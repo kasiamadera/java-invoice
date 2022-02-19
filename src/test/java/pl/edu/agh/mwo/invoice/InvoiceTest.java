@@ -1,17 +1,17 @@
 package pl.edu.agh.mwo.invoice;
 
-import java.math.BigDecimal;
-
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import pl.edu.agh.mwo.invoice.Invoice;
 import pl.edu.agh.mwo.invoice.product.DairyProduct;
 import pl.edu.agh.mwo.invoice.product.OtherProduct;
 import pl.edu.agh.mwo.invoice.product.Product;
 import pl.edu.agh.mwo.invoice.product.TaxFreeProduct;
+
+import java.math.BigDecimal;
+
+import static java.math.BigDecimal.ZERO;
 
 public class InvoiceTest {
     private Invoice invoice;
@@ -23,33 +23,17 @@ public class InvoiceTest {
 
     @Test
     public void testEmptyInvoiceHasEmptySubtotal() {
-        Assert.assertThat(BigDecimal.ZERO, Matchers.comparesEqualTo(invoice.getSubtotal()));
+        Assert.assertThat(ZERO, Matchers.comparesEqualTo(invoice.getSubtotal()));
     }
 
     @Test
     public void testEmptyInvoiceHasEmptyTaxAmount() {
-        Assert.assertThat(BigDecimal.ZERO, Matchers.comparesEqualTo(invoice.getTax()));
+        Assert.assertThat(ZERO, Matchers.comparesEqualTo(invoice.getTax()));
     }
 
     @Test
     public void testEmptyInvoiceHasEmptyTotal() {
-        Assert.assertThat(BigDecimal.ZERO, Matchers.comparesEqualTo(invoice.getTotal()));
-    }
-
-    @Test
-    public void testInvoiceSubtotalWithTwoDifferentProducts() {
-        Product onions = new TaxFreeProduct("Warzywa", new BigDecimal("10"));
-        Product apples = new TaxFreeProduct("Owoce", new BigDecimal("10"));
-        invoice.addProduct(onions);
-        invoice.addProduct(apples);
-        Assert.assertThat(new BigDecimal("20"), Matchers.comparesEqualTo(invoice.getSubtotal()));
-    }
-
-    @Test
-    public void testInvoiceSubtotalWithManySameProducts() {
-        Product onions = new TaxFreeProduct("Warzywa", new BigDecimal("10"));
-        invoice.addProduct(onions, 100);
-        Assert.assertThat(new BigDecimal("1000"), Matchers.comparesEqualTo(invoice.getSubtotal()));
+        Assert.assertThat(ZERO, Matchers.comparesEqualTo(invoice.getTotal()));
     }
 
     @Test
