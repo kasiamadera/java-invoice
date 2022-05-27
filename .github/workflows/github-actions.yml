@@ -16,11 +16,10 @@ jobs:
           distribution: 'adopt'
       - name: Test
         run: mvn test
-      checkstyle:
-        name: Checkstyle
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v2
-
+  checkstyle:
+    name: Checkstyle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: CheckStyle
         run: mvn checkstyle:check
