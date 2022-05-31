@@ -1,17 +1,17 @@
 package pl.edu.agh.mwo.invoice;
 
-import java.math.BigDecimal;
-
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import pl.edu.agh.mwo.invoice.Invoice;
 import pl.edu.agh.mwo.invoice.product.DairyProduct;
 import pl.edu.agh.mwo.invoice.product.OtherProduct;
 import pl.edu.agh.mwo.invoice.product.Product;
 import pl.edu.agh.mwo.invoice.product.TaxFreeProduct;
+
+import java.math.BigDecimal;
+
+import static java.math.BigDecimal.ZERO;
 
 public class InvoiceTest {
     private Invoice invoice;
@@ -23,16 +23,25 @@ public class InvoiceTest {
 
     @Test
     public void testEmptyInvoiceHasEmptySubtotal() {
+<<<<<<< HEAD
         Assert.assertThat(BigDecimal.ZERO, Matchers.comparesEqualTo(invoice.getNetTotal()));
+=======
+        Assert.assertThat(ZERO, Matchers.comparesEqualTo(invoice.getSubtotal()));
+>>>>>>> 8c86a74c20832bb8edd2023ac9535db42ddc7fb0
     }
 
     @Test
     public void testEmptyInvoiceHasEmptyTaxAmount() {
+<<<<<<< HEAD
         Assert.assertThat(BigDecimal.ZERO, Matchers.comparesEqualTo(invoice.getTaxTotal()));
+=======
+        Assert.assertThat(ZERO, Matchers.comparesEqualTo(invoice.getTax()));
+>>>>>>> 8c86a74c20832bb8edd2023ac9535db42ddc7fb0
     }
 
     @Test
     public void testEmptyInvoiceHasEmptyTotal() {
+<<<<<<< HEAD
         Assert.assertThat(BigDecimal.ZERO, Matchers.comparesEqualTo(invoice.getGrossTotal()));
     }
 
@@ -50,6 +59,9 @@ public class InvoiceTest {
         Product onions = new TaxFreeProduct("Warzywa", BigDecimal.valueOf(10));
         invoice.addProduct(onions, 100);
         Assert.assertThat(new BigDecimal("1000"), Matchers.comparesEqualTo(invoice.getNetTotal()));
+=======
+        Assert.assertThat(ZERO, Matchers.comparesEqualTo(invoice.getTotal()));
+>>>>>>> 8c86a74c20832bb8edd2023ac9535db42ddc7fb0
     }
 
     @Test
@@ -120,9 +132,13 @@ public class InvoiceTest {
     public void testInvoiceWithNegativeQuantity() {
         invoice.addProduct(new DairyProduct("Zsiadle mleko", new BigDecimal("5.55")), -1);
     }
+<<<<<<< HEAD
 
     @Test(expected = IllegalArgumentException.class)
     public void testAddingNullProduct() {
         invoice.addProduct(null);
     }
 }
+=======
+}
+>>>>>>> 8c86a74c20832bb8edd2023ac9535db42ddc7fb0
