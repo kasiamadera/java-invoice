@@ -19,6 +19,12 @@ public class Invoice {
         if (product == null || quantity <= 0) {
             throw new IllegalArgumentException();
         }
+        for (Product product1 : products.keySet()) {
+            if (product1.getName().equals(product1.getName())) {
+                products.compute(product1, (key, value) -> value == null ? quantity:value + quantity);
+                return;
+            }
+        }
         products.put(product, quantity);
     }
 
