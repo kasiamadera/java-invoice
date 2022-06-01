@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
@@ -48,6 +47,7 @@ public class Invoice {
     public int getNumber() {
         return number;
     }
+
     public String print() {
         return "Invoice number: " + this.getNumber() + "\n"
                 + products.keySet()
