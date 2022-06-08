@@ -12,6 +12,8 @@ import org.junit.Test;
 import pl.edu.agh.mwo.invoice.Invoice;
 import pl.edu.agh.mwo.invoice.product.*;
 
+import static org.junit.Assert.assertEquals;
+
 public class InvoiceTest {
     private Invoice invoice;
 
@@ -140,7 +142,7 @@ public class InvoiceTest {
 
     @Test
     public void testInvoiceDoesNotChangeItsNumber() {
-        Assert.assertEquals(invoice.getNumber(), invoice.getNumber());
+        assertEquals(invoice.getNumber(), invoice.getNumber());
     }
 
     @Test
@@ -157,7 +159,7 @@ public class InvoiceTest {
         String print = invoice.print();
         System.out.println(invoice.print());
 
-        Assert.assertEquals(invoice.getProducts().keySet().stream().map(Product::getName)
+        assertEquals(invoice.getProducts().keySet().stream().map(Product::getName)
                 .filter(print::contains).count(), invoice.getProducts().size());
     }
     @Test
@@ -168,22 +170,22 @@ public class InvoiceTest {
 
         String print = invoice.print();
         System.out.println(print);
-        Assert.assertEquals(1, invoice.getProducts().keySet().stream().filter(p -> p.getName().equals("Owoce")).count());
+        assertEquals(1, invoice.getProducts().keySet().stream().filter(p -> p.getName().equals("Owoce")).count());
     }
-/*    @Test
+    @Test
     public void testInvoiceAddProductsWithExcise() {
         invoice.addProduct(new BottleOfWine("Butelka wina", new BigDecimal(30.0)), 3);
         invoice.addProduct(new FuelCanister("Karnister", new BigDecimal(100.0)), 2);
 
         Assert.assertTrue(invoice.getProducts().keySet().stream().map(p -> p.getName())
-                .collect(Collectors.toList()).containsAll(Arrays.asList("Wisienka", "Super Canister")));
+                .collect(Collectors.toList()).containsAll(Arrays.asList("Butelka wina", "Karnister")));
     }
     @Test
     public void testInvoiceWinePrice() {
-        BottleOfWine bottleOfWine = new BottleOfWine("Butelka wina", new BigDecimal(20.0));
+        BottleOfWine bottleOfWine = new BottleOfWine("Butelka wina", new BigDecimal(30.0));
         invoice.addProduct(bottleOfWine, 3);
 
         Assert.assertEquals(bottleOfWine.getPriceWithTax().multiply(BigDecimal.valueOf(invoice.getProducts().get(bottleOfWine))),
-                BigDecimal.valueOf(46.68));
-    }*/
+                BigDecimal.valueOf(113.88));
+    }
 }
