@@ -170,7 +170,7 @@ public class InvoiceTest {
         System.out.println(print);
         Assert.assertEquals(1, invoice.getProducts().keySet().stream().filter(p -> p.getName().equals("Owoce")).count());
     }
-    @Test
+/*    @Test
     public void testInvoiceAddProductsWithExcise() {
         invoice.addProduct(new BottleOfWine("Butelka wina", new BigDecimal(30.0)), 3);
         invoice.addProduct(new FuelCanister("Karnister", new BigDecimal(100.0)), 2);
@@ -185,5 +185,5 @@ public class InvoiceTest {
 
         Assert.assertEquals(bottleOfWine.getPriceWithTax().multiply(BigDecimal.valueOf(invoice.getProducts().get(bottleOfWine))),
                 BigDecimal.valueOf(46.68));
-    }
+    }*/
 }
