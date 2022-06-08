@@ -1,6 +1,7 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -11,6 +12,10 @@ public class Invoice {
     private static int nextNumber = 0;
     private final int number = ++nextNumber;
 
+    public Map<Product, Integer> getProducts() {
+        return Collections.unmodifiableMap(products);
+    }
+
     public void addProduct(Product product) {
         addProduct(product, 1);
     }
@@ -19,9 +24,10 @@ public class Invoice {
         if (product == null || quantity <= 0) {
             throw new IllegalArgumentException();
         }
-        for (Product product1 : products.keySet()) {
-            if (product1.getName().equals(product1.getName())) {
-                products.compute(product1, (key, value) -> value == null ? quantity:value + quantity);
+
+        for (Product p : products.keySet()) {
+            if (p.getName().equals(product.getName())) {
+                products.compute(p, (key, value) ->  value == null ? quantity : value + quantity);
                 return;
             }
         }
